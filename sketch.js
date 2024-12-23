@@ -184,10 +184,24 @@ function draw() {
   drawHealthBar(player2.x, player2.y, player2.health, false);
   
   // 在背景上方中間顯示 "TKUET"
-  textSize((100));  // 設定字體大小
-  fill(0, 255, 255);  // 設定字體顏色（紅色）
-  textAlign(CENTER, CENTER);  // 設定對齊方式為中間對齊
-  text("TKUET", width / 2, 100);  // 在畫面中間上方顯示文本
+  textSize(100);
+  fill(0, 255, 255);
+  textAlign(CENTER, CENTER);
+  text("TKUET", width / 2, 100);
+  
+  // 添加控制說明
+  textSize(16);
+  textAlign(LEFT);
+  
+  // 為說明文字添加半透明黑色背景
+  fill(0, 0, 0, 150);  // 黑色，alpha值為150（半透明）
+  rect(15, height - 300, 200, 250);  // 角色說明的背景，寬度增加到200
+
+  
+  // 繪製白色說明文字
+  fill(255);  // 白色文字
+  text("角色2控制：\n↑ - 跳躍\n←,→ - 左右移動\n1 - 近戰攻擊\n2 - 遠程攻擊", 20, height - 120);
+  text("角色1控制：\nW - 跳躍\nA,D - 左右移動\nJ - 近戰攻擊\nK - 遠程攻擊", 20, height - 240);
 }
 
 function updateAnimation() {
@@ -468,7 +482,7 @@ function updateBullets() {
     // 檢查是否擊中玩家1
     if (abs(bullets2[i].x - player1.x) < 50 && abs(bullets2[i].y - player1.y) < 50) {
       player1.health = max(0, player1.health - BULLET_DAMAGE);
-      // 在擊中位置創建爆炸效果
+      // 在擊中位置��建爆炸效果
       explosions.push({
         x: bullets2[i].x,
         y: bullets2[i].y,
